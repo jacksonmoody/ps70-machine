@@ -22,6 +22,14 @@ export default function Canvas(props) {
     }
 
     const draw = (p5) => {
+        if (props.clear) {
+            p5.clear();
+            props.clearHandler();
+            mouseX=0;
+            mouseY=0;
+            pmouseX=0;
+            pmouseY=0;
+        }
         p5.background(255, 0);
         p5.line(mouseX, mouseY, pmouseX, pmouseY);
         pmouseX = mouseX;

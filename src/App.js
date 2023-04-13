@@ -1,17 +1,37 @@
 import './App.css';
+import { useState } from 'react';
 import Canvas from './Canvas';
 
 function App() {
+  const [clear, setClear] = useState(false);
   let array1 = [];
   let array2 = [];
 
-  const handleClick = () => {
+  const clearHandler = () => {
+    setClear(false);
+  }
+
+  const handleClick = (circle) => {
+    setClear(true);
     let today = new Date(),
-      time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-    let jsonData = {
-      "x_coordinates": array1,
-      "y_coordinates": array2,
-      "time": time
+    time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    let jsonData;
+
+    if (circle) {
+      jsonData = {
+        "x_coordinates": array1,
+        "y_coordinates": array2,
+        "time": time,
+        "circle": true
+      }
+    } else { 
+      jsonData = {
+        "x_coordinates": array1,
+        "y_coordinates": array2,
+        "time": time,
+        "circle": false
+      }
+
     }
     jsonData = JSON.stringify(jsonData);
     console.log(jsonData);
@@ -32,8 +52,10 @@ function App() {
       <h1>PS70 Sidewalk Plotter App</h1>
       <h3>Draw what you want to create below!</h3>
       <img src="https://img.freepik.com/free-vector/abstract-horizontal-grid-lines-graph-style-graphic-design_1017-39918.jpg?w=2000" alt="Grid" />
-      <Canvas width="1080" height="620" x_coordinates={array1} y_coordinates={array2} />
-      <button onClick={handleClick}>Send to Plotter</button>
+      <Canvas width="1080" height="620" x_coordinates={array1} y_coordinates={array2} clear={clear} clearHandler={clearHandler} />
+      <button class="button-green" onClick={() => handleClick(false)}>Send to Plotter</button>
+      <button class="button-blue" onClick={() => handleClick(true)}>Draw Circle ⚪</button>
+      <button class="button-red" onClick={() => setClear(true)}>Clear</button>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 button {
-    background-color: #FAA; 
     border: none;
     border-radius: 10px;
     color: white;
@@ -8,11 +7,25 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 25px;
-    margin-top: 20px;
+    margin: 20px;
+}
+
+.button-red {
+    background-color: #FAA;
+}
+
+.button-green {
+    background-color: rgb(145, 217, 145);
+}
+
+.button-blue {
+    background-color: rgb(145, 217, 217);
 }
 
 img {
     position: relative;
+    width: 1090px;
+    height: 600px;
 }
 Canvas {
     position: absolute;
