@@ -19,6 +19,7 @@ export default function Canvas(props) {
         mouseY = e.mouseY;
         props.x_coordinates.push(mouseX);
         props.y_coordinates.push(mouseY);
+        props.pen.push(1);
     }
 
     const draw = (p5) => {
